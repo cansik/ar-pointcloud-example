@@ -53,7 +53,7 @@ void draw()
   {
     // export object
     OBJExport obj = (OBJExport) createGraphics(10, 10, "nervoussystem.obj.OBJExport", exportPath);
-    obj.setColor(true);
+    obj.setColor(false);
     obj.beginDraw();
     obj.noFill();
     obj.shape(meshCloud);
@@ -80,6 +80,11 @@ void keyPressed()
   if (key == 'E' || key == 'e')
   {
     selectOutput("PLY file to store cloud:", "saveFileSelected");
+  }
+
+  if (key == 'V' || key == 'v')
+  {
+    convertToSingleMeshCloud();
   }
 
   if (key == ' ')
@@ -139,6 +144,28 @@ void convertToMeshCloud()
 
   meshCloudConverted = true;
   println("mesh cloud created!");
+}
+
+void convertToSingleMeshCloud()
+{
+  meshCloud = createShape();
+  meshCloud.beginShape(LINES);
+
+  meshCloud.noFill();
+  meshCloud.setStroke(true);
+  meshCloud.stroke(255);
+  meshCloud.strokeWeight(1);
+
+  for (int i = 0; i < cloud.getVertexCount(); i++)
+  {
+    PVector v = cloud.getVertex(i);
+    meshCloud.vertex(v.x, v.y, v.z);
+  }
+
+  meshCloud.endShape();
+
+  meshCloudConverted = true;
+  println("single mesh cloud created!");
 }
 
 public void loadPointCloud(String fileName)
