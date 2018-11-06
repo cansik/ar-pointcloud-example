@@ -24,7 +24,8 @@ PeasyCam cam;
 
 void setup()
 {
-  size(1024, 800, P3D);
+  size(1280, 720, P3D);
+  pixelDensity = 2;
 
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
@@ -82,9 +83,19 @@ void keyPressed()
     selectOutput("PLY file to store cloud:", "saveFileSelected");
   }
 
+  if (key == 'S' || key == 's')
+  {
+    convertToSubLineMeshCloud();
+  }
+
+  if (key == 'M' || key == 'm')
+  {
+    convertToCenterLineMeshCloud();
+  }
+
   if (key == 'V' || key == 'v')
   {
-    convertToSingleMeshCloud();
+    convertToLineMeshCloud();
   }
 
   if (key == ' ')
@@ -146,26 +157,117 @@ void convertToMeshCloud()
   println("mesh cloud created!");
 }
 
-void convertToSingleMeshCloud()
+void convertToLineMeshCloud()
 {
+  // sort vertices
+  List<PVector> vecs = new ArrayList<PVector>(cloud.getVertexCount());
+  for (int i = 0; i < cloud.getVertexCount(); i++)
+    vecs.add(cloud.getVertex(i));
+  Collections.sort(vecs, VectorComperator);
+
+  // create shape
   meshCloud = createShape();
   meshCloud.beginShape(LINES);
 
   meshCloud.noFill();
   meshCloud.setStroke(true);
   meshCloud.stroke(255);
-  meshCloud.strokeWeight(1);
+  meshCloud.strokeWeight(0.1);
 
-  for (int i = 0; i < cloud.getVertexCount(); i++)
-  {
-    PVector v = cloud.getVertex(i);
+  for (int i = 0; i < vecs.size(); i++) {
+    PVector v = vecs.get(i);
     meshCloud.vertex(v.x, v.y, v.z);
   }
 
   meshCloud.endShape();
 
   meshCloudConverted = true;
-  println("single mesh cloud created!");
+  println("line mesh cloud created!");
+}
+
+void convertToCenterLineMeshCloud()
+{
+  // sort vertices
+  List<PVector> vecs = new ArrayList<PVector>(cloud.getVertexCount());
+  for (int i = 0; i < cloud.getVertexCount(); i++)
+    vecs.add(cloud.getVertex(i));
+  Collections.sort(vecs, VectorComperator);
+  
+  PVector zero = new PVector(0, 0, 0);
+  float startColorFade = 0.8;
+
+  // create shape
+  meshCloud = createShape(GROUP);
+
+  for (int i = 0; i < vecs.size(); i++) {
+    PVector v = vecs.get(i);
+    
+    PVector startColor = PVector.lerp(zero, v, startColorFade);
+
+    PShape shape = createShape();
+    shape.beginShape(LINES);
+    shape.noFill();
+    shape.setStroke(true);
+    shape.stroke(0);
+    shape.strokeWeight(0.2);
+    shape.vertex(startColor.x, startColor.y, startColor.z);
+    shape.stroke(255);
+    //shape.vertex(zero.x, zero.y, zero.z);
+    shape.vertex(v.x, v.y, v.z);
+    shape.endShape();
+    meshCloud.addChild(shape);
+  }
+
+  meshCloudConverted = true;
+  println("center line mesh cloud created!");
+}
+
+
+void convertToSubLineMeshCloud()
+{
+  // sort vertices
+  List<PVector> vecs = new ArrayList<PVector>(cloud.getVertexCount());
+  for (int i = 0; i < cloud.getVertexCount(); i++)
+    vecs.add(cloud.getVertex(i));
+  Collections.sort(vecs, VectorComperator);
+
+  // create shape
+  meshCloud = createShape(GROUP);
+  float maxDistance = 1000.0;
+
+  PShape shape = createShape();
+  shape.beginShape(TRIANGLES);
+  shape.noFill();
+  shape.setStroke(true);
+  shape.stroke(255);
+  shape.strokeWeight(0.1);
+
+  for (int i = 0; i < vecs.size(); i++) {
+    PVector v = vecs.get(i);
+    float d = abs(PVector.dist(v, vecs.get((i + 1) % vecs.size())));
+
+    if (d < maxDistance)
+      shape.vertex(v.x, v.y, v.z);
+    else
+    {
+      shape.endShape();
+      meshCloud.addChild(shape);
+
+      // create new
+      shape = createShape();
+      shape.beginShape(TRIANGLES);
+      shape.fill(0, 100, 0);
+      shape.setStroke(true);
+      shape.stroke(255);
+      shape.strokeWeight(0.1);
+    }
+  }
+
+  shape.endShape();
+  meshCloud.addChild(shape);
+
+  meshCloudConverted = true;
+  println("sub line mesh cloud created!");
 }
 
 public void loadPointCloud(String fileName)
