@@ -194,7 +194,7 @@ void convertToCenterLineMeshCloud()
   Collections.sort(vecs, VectorComperator);
   
   PVector zero = new PVector(0, 0, 0);
-  float startColorFade = 0.8;
+  float startColorFade = 0.9;
 
   // create shape
   meshCloud = createShape(GROUP);
@@ -213,7 +213,7 @@ void convertToCenterLineMeshCloud()
     shape.vertex(startColor.x, startColor.y, startColor.z);
     shape.stroke(255);
     //shape.vertex(zero.x, zero.y, zero.z);
-    shape.vertex(v.x, v.y, v.z);
+    shape.vertex(v.x * 10, v.y * 10, v.z * 10);
     shape.endShape();
     meshCloud.addChild(shape);
   }
