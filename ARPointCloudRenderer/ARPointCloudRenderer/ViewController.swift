@@ -15,6 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     
     let pc = PointCloud()
+    var currentPointCloud = SCNNode()
     
     var lastNode : SCNNode?
     
@@ -25,7 +26,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // show feature points
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         // allows the user to manipulate the camera
         //sceneView.allowsCameraControl = true
@@ -33,6 +34,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:))))
+        sceneView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(recognizer:))))
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -52,7 +54,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planeNode.position = SCNVector3(x,y,z)
         planeNode.eulerAngles.x = -.pi / 2
         planeNode.name = "plane"
-
+        
         update(&planeNode, withGeometry: plane, type: .static)
         
         lastNode = node
@@ -102,15 +104,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    @objc func handlePinch(recognizer: UIPinchGestureRecognizer)
+    {
+        let sceneView = recognizer.view as! ARSCNView
+        
+        if recognizer.state == .began || recognizer.state == .changed {
+            let scale = Float(recognizer.scale)
+            
+            let newscalex = scale * self.currentPointCloud.scale.x
+            let newscaley = scale * self.currentPointCloud.scale.y
+            let newscalez = scale * self.currentPointCloud.scale.z
+            
+            self.currentPointCloud.scale = SCNVector3(newscalex, newscaley, newscalez)
+            recognizer.scale = 1.0
+        }
+    }
+    
     @objc func handleTap(recognizer: UITapGestureRecognizer){
-         let sceneView = recognizer.view as! ARSCNView
+        let sceneView = recognizer.view as! ARSCNView
         
         guard let node = lastNode as? SCNNode else { return }
         
-        let pcNode = pc.getNode()
+        currentPointCloud.removeFromParentNode()
+        currentPointCloud = pc.getNode()
         //pcNode.scale = SCNVector3(2.0, 2.0, 2.0)
-       node.addChildNode(pcNode)
-        
+        node.addChildNode(currentPointCloud)
         
         // todo: now working
         let touchLocation = recognizer.location(in: sceneView)
