@@ -16,7 +16,8 @@
 		AB0DBAC3219AEC42000A9E13 /* PointCloudVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */; };
 		AB0DBAC5219AEC42000A9E13 /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */; };
 		AB9F6635219AEF23005E0E3E /* forest-3-us-t.ply.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply.txt */; };
-		AB9F6636219AEF23005E0E3E /* forest-3-us-t.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6634219AEF23005E0E3E /* forest-3-us-t.ply */; };
+		AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt */; };
+		AB9F663A219B60EF005E0E3E /* crossroad-filtered.ply.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,8 @@
 		AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudVertex.swift; sourceTree = "<group>"; };
 		AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 		AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-us-t.ply.txt"; sourceTree = "<group>"; };
-		AB9F6634219AEF23005E0E3E /* forest-3-us-t.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-us-t.ply"; sourceTree = "<group>"; };
+		AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-highres_filtered.ply.txt"; sourceTree = "<group>"; };
+		AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "crossroad-filtered.ply.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +83,8 @@
 		AB9F6632219AEEB3005E0E3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AB9F6634219AEF23005E0E3E /* forest-3-us-t.ply */,
+				AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply.txt */,
+				AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt */,
 				AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply.txt */,
 			);
 			path = Resources;
@@ -145,11 +148,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB9F663A219B60EF005E0E3E /* crossroad-filtered.ply.txt in Resources */,
 				AB0DBAAF219AEBC0000A9E13 /* art.scnassets in Resources */,
 				AB0DBAB9219AEBC2000A9E13 /* LaunchScreen.storyboard in Resources */,
 				AB9F6635219AEF23005E0E3E /* forest-3-us-t.ply.txt in Resources */,
-				AB9F6636219AEF23005E0E3E /* forest-3-us-t.ply in Resources */,
 				AB0DBAB6219AEBC2000A9E13 /* Assets.xcassets in Resources */,
+				AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt in Resources */,
 				AB0DBAB4219AEBC0000A9E13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

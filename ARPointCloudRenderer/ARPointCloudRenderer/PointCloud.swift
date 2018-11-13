@@ -15,8 +15,10 @@ import SceneKit
     
     override init() {
         super.init()
-        
-        let file: String = "forest-3-us-t.ply"
+    }
+    
+    public func load(file : String)
+    {
         self.n = 0
         var x, y, z : Double
         (x,y,z) = (0,0,0)
@@ -44,9 +46,10 @@ import SceneKit
                 // Read data
                 for i in 0...(self.n-1) {
                     let line = myStrings[i]
-                    x = Double(line.components(separatedBy: " ")[0])!
-                    y = Double(line.components(separatedBy: " ")[1])!
-                    z = Double(line.components(separatedBy: " ")[2])!
+                    let elements = line.components(separatedBy: " ")
+                    x = Double(elements[0])!
+                    y = Double(elements[1])!
+                    z = Double(elements[2])!
                     
                     pointCloud[i].x = Float(x)
                     pointCloud[i].y = Float(y)
@@ -57,11 +60,9 @@ import SceneKit
                 print(error)
             }
         }
-        
     }
     
-    
-    public func getNode() -> SCNNode {
+    public func getNode(useColor : Bool = false) -> SCNNode {
         let points = self.pointCloud
         var vertices = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: points.count)
         
@@ -70,9 +71,20 @@ import SceneKit
             vertices[i].x = Float(p.x)
             vertices[i].y = Float(p.y)
             vertices[i].z = Float(p.z)
-            vertices[i].r = Float(1.0)
-            vertices[i].g = Float(1.0)
-            vertices[i].b = Float(1.0)
+            
+            if(useColor)
+            {
+                /*
+                vertices[i].r = Float(p.r)
+                vertices[i].g = Float(p.g)
+                vertices[i].b = Float(p.b)
+ */
+            }
+            else{
+                vertices[i].r = Float(1.0)
+                vertices[i].g = Float(1.0)
+                vertices[i].b = Float(1.0)
+            }
         }
         
         let node = buildNode(points: vertices)
