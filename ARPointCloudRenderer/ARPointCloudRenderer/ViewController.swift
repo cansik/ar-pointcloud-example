@@ -16,6 +16,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     let pc = PointCloud()
     
+    var lastNode : SCNNode?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        sceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:))))
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -48,18 +51,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let z = CGFloat(planeAnchor.center.z)
         planeNode.position = SCNVector3(x,y,z)
         planeNode.eulerAngles.x = -.pi / 2
-        
+        planeNode.name = "plane"
+
         update(&planeNode, withGeometry: plane, type: .static)
         
+        lastNode = node
         node.addChildNode(planeNode)
-        
-        let pcNode = pc.getNode()
-        pcNode.position = SCNVector3(x,y,z)
-        pcNode.scale = SCNVector3(2.0, 2.0, 2.0)
-        //pcNode.eulerAngles.x = -.pi / 2
-        node.addChildNode(pcNode)
-        
-        print("Found plane: \(planeAnchor)")
     }
     
     func update(_ node: inout SCNNode, withGeometry geometry: SCNGeometry, type: SCNPhysicsBodyType) {
@@ -104,6 +101,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    @objc func handleTap(recognizer: UITapGestureRecognizer){
+         let sceneView = recognizer.view as! ARSCNView
+        
+        guard let node = lastNode as? SCNNode else { return }
+        
+        let pcNode = pc.getNode()
+        //pcNode.scale = SCNVector3(2.0, 2.0, 2.0)
+       node.addChildNode(pcNode)
+        
+        
+        // todo: now working
+        let touchLocation = recognizer.location(in: sceneView)
+        let hitResults = sceneView.hitTest(touchLocation, options: [:])
+        if !hitResults.isEmpty {
+            print("found \(hitResults.count)")
+            let tappedNode = hitResults.first?.node
+            
+            guard let node = tappedNode as? SCNNode else { return }
+            print("trans \(node.name): w:\(node.worldPosition) l:\(node.position) s:\(node.simdPosition)")
+        }
+    }
 }
 
 extension float4x4 {
@@ -116,5 +135,9 @@ extension float4x4 {
 extension UIColor {
     open class var transparentWhite: UIColor {
         return UIColor.white.withAlphaComponent(0.20)
+    }
+    
+    open class var transparentBlue: UIColor {
+        return UIColor.blue.withAlphaComponent(0.30)
     }
 }
