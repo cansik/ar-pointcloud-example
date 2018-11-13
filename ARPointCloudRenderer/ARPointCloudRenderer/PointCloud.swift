@@ -111,6 +111,11 @@ import SceneKit
             primitiveCount: points.count,
             bytesPerIndex: MemoryLayout<Int>.size
         )
+        
+        elements.maximumPointScreenSpaceRadius = 5.0
+        elements.minimumPointScreenSpaceRadius = 1.0
+        elements.pointSize = 3.0
+        
         let pointsGeometry = SCNGeometry(sources: [positionSource, colorSource], elements: [elements])
         
         return SCNNode(geometry: pointsGeometry)

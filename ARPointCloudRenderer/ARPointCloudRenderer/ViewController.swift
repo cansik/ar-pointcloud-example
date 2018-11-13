@@ -77,7 +77,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         scene.rootNode.addChildNode(pcNode)
         
         // animate the 3d object
-        pcNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0.1, z: 0, duration: 1)))
+        //pcNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0.1, z: 0, duration: 1)))
         return scene
     }
     
