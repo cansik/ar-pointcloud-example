@@ -11,8 +11,10 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
+    
+    let pc = PointCloud()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,75 +22,65 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        let scene = createScene()
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        // show feature points
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         
         // allows the user to manipulate the camera
-        sceneView.allowsCameraControl = true
+        //sceneView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // configure the view
-        sceneView.backgroundColor = UIColor.black
     }
     
-    func createScene() -> SCNScene
-    {
-        // create a new scene
-        let scene = SCNScene()
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
-        // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.camera?.zNear = 0.0
-        cameraNode.camera?.zFar = 10.0
-        scene.rootNode.addChildNode(cameraNode)
+        let width = CGFloat(planeAnchor.extent.x)
+        let height = CGFloat(planeAnchor.extent.z)
+        let plane = SCNPlane(width: width, height: height)
         
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 0.3)
+        plane.materials.first?.diffuse.contents = UIColor.transparentWhite
         
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 3, z: 3)
-        scene.rootNode.addChildNode(lightNode)
+        var planeNode = SCNNode(geometry: plane)
         
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.white
-        scene.rootNode.addChildNode(ambientLightNode)
+        let x = CGFloat(planeAnchor.center.x)
+        let y = CGFloat(planeAnchor.center.y)
+        let z = CGFloat(planeAnchor.center.z)
+        planeNode.position = SCNVector3(x,y,z)
+        planeNode.eulerAngles.x = -.pi / 2
         
-        // retrieve the node
-        let pc = PointCloud()
+        update(&planeNode, withGeometry: plane, type: .static)
+        
+        node.addChildNode(planeNode)
+        
         let pcNode = pc.getNode()
-        pcNode.position = SCNVector3(x: 0, y: 0, z: 0)
+        pcNode.position = SCNVector3(x,y,z)
+        pcNode.scale = SCNVector3(2.0, 2.0, 2.0)
+        //pcNode.eulerAngles.x = -.pi / 2
+        node.addChildNode(pcNode)
         
-        scene.rootNode.addChildNode(pcNode)
-        
-        // animate the 3d object
-        //pcNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0.1, z: 0, duration: 1)))
-        return scene
+        print("Found plane: \(planeAnchor)")
+    }
+    
+    func update(_ node: inout SCNNode, withGeometry geometry: SCNGeometry, type: SCNPhysicsBodyType) {
+        let shape = SCNPhysicsShape(geometry: geometry, options: nil)
+        let physicsBody = SCNPhysicsBody(type: type, shape: shape)
+        node.physicsBody = physicsBody
+    }
+    
+    func configureLighting() {
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
-        // Run the view's session
-        sceneView.session.run(configuration)
+        configuration.planeDetection = [.horizontal]
+        configuration.isLightEstimationEnabled = true
+        
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,17 +89,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -122,5 +103,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+}
+
+extension float4x4 {
+    var translation: float3 {
+        let translation = self.columns.3
+        return float3(translation.x, translation.y, translation.z)
+    }
+}
+
+extension UIColor {
+    open class var transparentWhite: UIColor {
+        return UIColor.white.withAlphaComponent(0.20)
     }
 }
