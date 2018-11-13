@@ -35,8 +35,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         sceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:))))
         sceneView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(recognizer:))))
-        
-        //pc.load(file: "forest-3-highres_filtered.ply")
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -84,6 +82,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         
         pc.load(file: "crossroad-filtered.ply")
+        //pc.load(file: "forest-3-highres_filtered.ply")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -130,7 +129,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let node = lastNode as? SCNNode else { return }
         
         currentPointCloud.removeFromParentNode()
-        currentPointCloud = pc.getNode()
+        currentPointCloud = pc.getNode(useColor: true)
         currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
         node.addChildNode(currentPointCloud)
         

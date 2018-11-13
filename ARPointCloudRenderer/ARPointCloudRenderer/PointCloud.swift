@@ -11,7 +11,7 @@ import SceneKit
 @objc class PointCloud: NSObject {
     
     var n : Int = 0
-    var pointCloud : Array<SCNVector3> = []
+    var pointCloud : Array<PointCloudVertex> = []
     
     override init() {
         super.init()
@@ -22,6 +22,9 @@ import SceneKit
         self.n = 0
         var x, y, z : Double
         (x,y,z) = (0,0,0)
+        
+        var r, g, b : Int
+        (r, g, b) = (0, 0, 0)
         
         // Open file
         if let path = Bundle.main.path(forResource: file, ofType: "txt") {
@@ -41,7 +44,7 @@ import SceneKit
                     }
                 }
                 
-                pointCloud = Array<SCNVector3>(repeating: SCNVector3(x:0,y:0,z:0), count: n)
+                pointCloud = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: n)
                 
                 // Read data
                 for i in 0...(self.n-1) {
@@ -51,9 +54,17 @@ import SceneKit
                     y = Double(elements[1])!
                     z = Double(elements[2])!
                     
+                    r = Int(elements[3])!
+                    g = Int(elements[4])!
+                    b = Int(elements[5])!
+                    
                     pointCloud[i].x = Float(x)
                     pointCloud[i].y = Float(y)
                     pointCloud[i].z = Float(z)
+                    
+                    pointCloud[i].r = Float(r) / 255.0
+                    pointCloud[i].g = Float(g) / 255.0
+                    pointCloud[i].b = Float(b) / 255.0
                 }
                 NSLog("Point cloud data loaded: %d points",n)
             } catch {
@@ -63,28 +74,9 @@ import SceneKit
     }
     
     public func getNode(useColor : Bool = false) -> SCNNode {
-        let points = self.pointCloud
-        var vertices = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: points.count)
-        
-        for i in 0...(points.count-1) {
-            let p = points[i]
-            vertices[i].x = Float(p.x)
-            vertices[i].y = Float(p.y)
-            vertices[i].z = Float(p.z)
-            
-            if(useColor)
-            {
-                /*
-                vertices[i].r = Float(p.r)
-                vertices[i].g = Float(p.g)
-                vertices[i].b = Float(p.b)
- */
-            }
-            else{
-                vertices[i].r = Float(1.0)
-                vertices[i].g = Float(1.0)
-                vertices[i].b = Float(1.0)
-            }
+        let vertices = pointCloud.map { (v : PointCloudVertex) -> PointCloudVertex in
+            return useColor ? PointCloudVertex(x: v.x, y: v.y, z: v.z, r: v.r, g: v.g, b: v.b)
+                : PointCloudVertex(x: v.x, y: v.y, z: v.z, r: 1.0, g: 1.0, b: 1.0)
         }
         
         let node = buildNode(points: vertices)
@@ -124,9 +116,9 @@ import SceneKit
             bytesPerIndex: MemoryLayout<Int>.size
         )
         
-        elements.maximumPointScreenSpaceRadius = 5.0
+        elements.maximumPointScreenSpaceRadius = 2.0
         elements.minimumPointScreenSpaceRadius = 1.0
-        elements.pointSize = 3.0
+        elements.pointSize = 1.0
         
         let pointsGeometry = SCNGeometry(sources: [positionSource, colorSource], elements: [elements])
         
