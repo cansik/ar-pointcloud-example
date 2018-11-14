@@ -9,5 +9,6 @@ A simple viewer for pointclouds in augmented reality. The viewer is based on `Sc
 The app first detects anchor points of surfaces and then attaches the pointcloud onto this surface.
 
 ![Point Cloud with Markers](images/city_marker.jpg)
+
 *Fig. 2 Example cloud on markers*
 
