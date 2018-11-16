@@ -10,7 +10,8 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource, UITableViewDelegate {
+
     
     // ui vars
     @IBOutlet var sceneView: ARSCNView!
@@ -21,20 +22,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var loadInfoProgressbar: UIProgressView!
     
+    @IBOutlet var selectPointCloudTableView: UITableView!
+    
     // local vars
     let pc = PointCloud()
     var currentPointCloud = SCNNode()
     
     var lastNode : SCNNode?
     
+    var pointCloudFiles = ["Test", "Test2"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // show pointcloud selection
-        
-        // load pointcloud
-        loadPointCloud(fileName: "crossroad-filtered.ply")
-        //loadPointCloud(fileName: "forest-3-highres_filtered.ply")
+        showPointCloudSelectionView()
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -54,13 +56,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addGestureRecognizer(screenEdgeRec)
     }
     
+    func showPointCloudSelectionView()
+    {
+        let pcs = Bundle.main.paths(forResourcesOfType: "ply", inDirectory: "")
+        pointCloudFiles = pcs
+        
+        self.view.addSubview(self.selectPointCloudTableView)
+        self.selectPointCloudTableView.center = self.view.center
+        self.selectPointCloudTableView.layer.cornerRadius = 5
+        self.selectPointCloudTableView.dataSource = self
+    }
+    
     func loadPointCloud(fileName : String)
     {
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.main.async {
+                self.view.addSubview(self.loadInfoView)
+                self.loadInfoView.center = self.view.center
+                self.loadInfoView.layer.cornerRadius = 5
+                
                 self.sceneView.isHidden = true
                 self.loadInfoView.isHidden = false
-                self.loadInfoLabel.text = "loading \(fileName)..."
+                self.loadInfoLabel.text = "loading \((fileName as NSString).lastPathComponent)..."
             }
             
             self.pc.progressEvent.addHandler { progress in
@@ -73,6 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             DispatchQueue.main.async {
                 self.loadInfoView.isHidden = true
                 self.sceneView.isHidden = false
+                self.loadInfoView.removeFromSuperview()
             }
         }
     }
@@ -112,14 +130,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.automaticallyUpdatesLighting = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func runARScene()
+    {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal]
         configuration.isLightEstimationEnabled = true
         
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        runARScene()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -189,6 +212,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             e.pointSize = 20.0
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected cell number: \(indexPath.row)!")
+        
+        let path = pointCloudFiles[indexPath.row]
+        self.selectPointCloudTableView.removeFromSuperview()
+        
+        // load pointcloud
+        loadPointCloud(fileName: path)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pointCloudFiles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
+        let fileName = pointCloudFiles[indexPath.row]
+        cell.textLabel?.text = "\((fileName as NSString).lastPathComponent)"
+        return cell
+    }
 }
 
 extension float4x4 {
@@ -206,4 +250,8 @@ extension UIColor {
     open class var transparentBlue: UIColor {
         return UIColor.blue.withAlphaComponent(0.30)
     }
+}
+
+protocol StateSelector {
+    func didSelectState(state: String)
 }

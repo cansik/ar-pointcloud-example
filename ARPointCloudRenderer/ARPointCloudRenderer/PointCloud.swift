@@ -31,62 +31,60 @@ import SceneKit
         progressEvent.raise(data: 0.0)
         
         // Open file
-        if let path = Bundle.main.path(forResource: file, ofType: "txt") {
-            do {
-                let data = try String(contentsOfFile: path, encoding: .ascii)
-                var myStrings = data.components(separatedBy: "\n")
-                
-                // Read header
-                while !myStrings.isEmpty {
-                    let line = myStrings.removeFirst()
-                    if line.hasPrefix("element vertex ") {
-                        n = Int(line.components(separatedBy: " ")[2])!
-                        continue
-                    }
-                    if line.hasPrefix("end_header") {
-                        break
-                    }
+        do {
+            let data = try String(contentsOfFile: file, encoding: .ascii)
+            var myStrings = data.components(separatedBy: "\n")
+            
+            // Read header
+            while !myStrings.isEmpty {
+                let line = myStrings.removeFirst()
+                if line.hasPrefix("element vertex ") {
+                    n = Int(line.components(separatedBy: " ")[2])!
+                    continue
                 }
-                
-                pointCloud = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: n)
-                
-                var nextProgressStep = 0
-                let minProgressStep = Int(Float(n) * 0.01)
-                
-                // Read data
-                for i in 0...(self.n-1) {
-                    let line = myStrings[i]
-                    let elements = line.components(separatedBy: " ")
-                    x = Double(elements[0])!
-                    y = Double(elements[1])!
-                    z = Double(elements[2])!
-                    
-                    r = Int(elements[3])!
-                    g = Int(elements[4])!
-                    b = Int(elements[5])!
-                    
-                    pointCloud[i].x = Float(x)
-                    pointCloud[i].y = Float(y)
-                    pointCloud[i].z = Float(z)
-                    
-                    pointCloud[i].r = Float(r) / 255.0
-                    pointCloud[i].g = Float(g) / 255.0
-                    pointCloud[i].b = Float(b) / 255.0
-                    
-    
-                    if(i >= nextProgressStep)
-                    {
-                        let progress = Float(i) / Float(n)
-                        progressEvent.raise(data: progress)
-                        nextProgressStep += minProgressStep
-                    }
+                if line.hasPrefix("end_header") {
+                    break
                 }
-                
-                NSLog("Point cloud data loaded: %d points",n)
-                progressEvent.raise(data: 1.0)
-            } catch {
-                print(error)
             }
+            
+            pointCloud = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: n)
+            
+            var nextProgressStep = 0
+            let minProgressStep = Int(Float(n) * 0.01)
+            
+            // Read data
+            for i in 0...(self.n-1) {
+                let line = myStrings[i]
+                let elements = line.components(separatedBy: " ")
+                x = Double(elements[0])!
+                y = Double(elements[1])!
+                z = Double(elements[2])!
+                
+                r = Int(elements[3])!
+                g = Int(elements[4])!
+                b = Int(elements[5])!
+                
+                pointCloud[i].x = Float(x)
+                pointCloud[i].y = Float(y)
+                pointCloud[i].z = Float(z)
+                
+                pointCloud[i].r = Float(r) / 255.0
+                pointCloud[i].g = Float(g) / 255.0
+                pointCloud[i].b = Float(b) / 255.0
+                
+                
+                if(i >= nextProgressStep)
+                {
+                    let progress = Float(i) / Float(n)
+                    progressEvent.raise(data: progress)
+                    nextProgressStep += minProgressStep
+                }
+            }
+            
+            NSLog("Point cloud data loaded: %d points",n)
+            progressEvent.raise(data: 1.0)
+        } catch {
+            print(error)
         }
     }
     
@@ -133,9 +131,9 @@ import SceneKit
             bytesPerIndex: MemoryLayout<Int>.size
         )
         
-        elements.maximumPointScreenSpaceRadius = 20.0
+        elements.maximumPointScreenSpaceRadius = 5.0
         elements.minimumPointScreenSpaceRadius = 1.0
-        elements.pointSize = 1.0
+        elements.pointSize = 2.0
         
         let pointsGeometry = SCNGeometry(sources: [positionSource, colorSource], elements: [elements])
         return SCNNode(geometry: pointsGeometry)
