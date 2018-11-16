@@ -30,6 +30,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // show pointcloud selection
+        
         // load pointcloud
         loadPointCloud(fileName: "crossroad-filtered.ply")
         //loadPointCloud(fileName: "forest-3-highres_filtered.ply")
@@ -43,8 +45,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
+        // add gesture recognizer
         sceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:))))
         sceneView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(recognizer:))))
+        
+        let screenEdgeRec = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleScreenEdge(recognizer:)))
+        screenEdgeRec.edges = UIRectEdge.left
+        sceneView.addGestureRecognizer(screenEdgeRec)
     }
     
     func loadPointCloud(fileName : String)
@@ -167,6 +174,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         currentPointCloud = pc.getNode(useColor: true)
         currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
         node.addChildNode(currentPointCloud)
+    }
+    
+    @objc func handleScreenEdge(recognizer: UIScreenEdgePanGestureRecognizer) {
+        // show settings
+        print("showing settings...")
+    }
+    
+    @IBAction func settingsButtonPressed()
+    {
+        // change pointcloud size
+        currentPointCloud.geometry!.elements.forEach { (e : SCNGeometryElement) in
+            e.maximumPointScreenSpaceRadius = 20.0
+            e.pointSize = 20.0
+        }
     }
 }
 
