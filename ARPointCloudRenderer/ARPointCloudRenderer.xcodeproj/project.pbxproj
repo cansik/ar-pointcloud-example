@@ -15,6 +15,7 @@
 		AB0DBAB9219AEBC2000A9E13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB0DBAB7219AEBC2000A9E13 /* LaunchScreen.storyboard */; };
 		AB0DBAC3219AEC42000A9E13 /* PointCloudVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */; };
 		AB0DBAC5219AEC42000A9E13 /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */; };
+		AB24053C219F135F00B97ACC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24053B219F135F00B97ACC /* Event.swift */; };
 		AB9F6635219AEF23005E0E3E /* forest-3-us-t.ply.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply.txt */; };
 		AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt */; };
 		AB9F663A219B60EF005E0E3E /* crossroad-filtered.ply.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply.txt */; };
@@ -31,6 +32,7 @@
 		AB0DBABA219AEBC2000A9E13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudVertex.swift; sourceTree = "<group>"; };
 		AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
+		AB24053B219F135F00B97ACC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-us-t.ply.txt"; sourceTree = "<group>"; };
 		AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-highres_filtered.ply.txt"; sourceTree = "<group>"; };
 		AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "crossroad-filtered.ply.txt"; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				AB0DBAB5219AEBC2000A9E13 /* Assets.xcassets */,
 				AB0DBAB7219AEBC2000A9E13 /* LaunchScreen.storyboard */,
 				AB0DBABA219AEBC2000A9E13 /* Info.plist */,
+				AB24053B219F135F00B97ACC /* Event.swift */,
 			);
 			path = ARPointCloudRenderer;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				AB0DBAB1219AEBC0000A9E13 /* ViewController.swift in Sources */,
 				AB0DBAC3219AEC42000A9E13 /* PointCloudVertex.swift in Sources */,
 				AB0DBAAD219AEBBF000A9E13 /* AppDelegate.swift in Sources */,
+				AB24053C219F135F00B97ACC /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,8 @@ import SceneKit
     var n : Int = 0
     var pointCloud : Array<PointCloudVertex> = []
     
+    let progressEvent = Event<Float>()
+    
     override init() {
         super.init()
     }
@@ -25,6 +27,8 @@ import SceneKit
         
         var r, g, b : Int
         (r, g, b) = (0, 0, 0)
+        
+        progressEvent.raise(data: 0.0)
         
         // Open file
         if let path = Bundle.main.path(forResource: file, ofType: "txt") {
@@ -65,8 +69,13 @@ import SceneKit
                     pointCloud[i].r = Float(r) / 255.0
                     pointCloud[i].g = Float(g) / 255.0
                     pointCloud[i].b = Float(b) / 255.0
+                    
+                    let progress = Float(i) / Float(n)
+                    progressEvent.raise(data: progress)
                 }
+                
                 NSLog("Point cloud data loaded: %d points",n)
+                progressEvent.raise(data: 1.0)
             } catch {
                 print(error)
             }

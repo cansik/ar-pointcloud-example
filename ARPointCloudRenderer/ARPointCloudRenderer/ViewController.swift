@@ -12,8 +12,16 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
+    // ui vars
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet var loadInfoView: UIStackView!
+    
+    @IBOutlet var loadInfoLabel: UILabel!
+    
+    @IBOutlet var loadInfoProgressbar: UIProgressView!
+    
+    // local vars
     let pc = PointCloud()
     var currentPointCloud = SCNNode()
     
@@ -22,19 +30,44 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // load pointcloud
+        loadPointCloud(fileName: "crossroad-filtered.ply")
+        //loadPointCloud(fileName: "forest-3-highres_filtered.ply")
+        
         // Set the view's delegate
         sceneView.delegate = self
         
         // show feature points
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
-        // allows the user to manipulate the camera
-        //sceneView.allowsCameraControl = true
-        
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        
         sceneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:))))
         sceneView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(recognizer:))))
+    }
+    
+    func loadPointCloud(fileName : String)
+    {
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.main.async {
+                self.sceneView.isHidden = true
+                self.loadInfoView.isHidden = false
+                self.loadInfoLabel.text = "loading \(fileName)..."
+            }
+            
+            self.pc.progressEvent.addHandler { progress in
+                DispatchQueue.main.async {
+                    self.loadInfoProgressbar.setProgress(Float(progress), animated: true)
+                }
+            }
+            self.pc.load(file: fileName)
+            
+            DispatchQueue.main.async {
+                self.loadInfoView.isHidden = true
+                self.sceneView.isHidden = false
+            }
+        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -80,9 +113,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         configuration.isLightEstimationEnabled = true
         
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
-        pc.load(file: "crossroad-filtered.ply")
-        //pc.load(file: "forest-3-highres_filtered.ply")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,23 +156,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @objc func handleTap(recognizer: UITapGestureRecognizer){
         let sceneView = recognizer.view as! ARSCNView
         
-        guard let node = lastNode as? SCNNode else { return }
+        guard let node = lastNode else { return }
+        
+        // removed child nodes
+        node.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
         
         currentPointCloud.removeFromParentNode()
         currentPointCloud = pc.getNode(useColor: true)
         currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
         node.addChildNode(currentPointCloud)
-        
-        // todo: now working
-        let touchLocation = recognizer.location(in: sceneView)
-        let hitResults = sceneView.hitTest(touchLocation, options: [:])
-        if !hitResults.isEmpty {
-            print("found \(hitResults.count)")
-            let tappedNode = hitResults.first?.node
-            
-            guard let node = tappedNode as? SCNNode else { return }
-            print("trans \(node.name): w:\(node.worldPosition) l:\(node.position) s:\(node.simdPosition)")
-        }
     }
 }
 
