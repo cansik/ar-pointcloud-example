@@ -15,7 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // ui vars
     @IBOutlet var sceneView: ARSCNView!
     
-    @IBOutlet var loadInfoView: UIStackView!
+    @IBOutlet var loadInfoView: UIView!
     
     @IBOutlet var loadInfoLabel: UILabel!
     

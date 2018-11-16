@@ -50,6 +50,9 @@ import SceneKit
                 
                 pointCloud = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: n)
                 
+                var nextProgressStep = 0
+                let minProgressStep = Int(Float(n) * 0.01)
+                
                 // Read data
                 for i in 0...(self.n-1) {
                     let line = myStrings[i]
@@ -70,8 +73,13 @@ import SceneKit
                     pointCloud[i].g = Float(g) / 255.0
                     pointCloud[i].b = Float(b) / 255.0
                     
-                    let progress = Float(i) / Float(n)
-                    progressEvent.raise(data: progress)
+    
+                    if(i >= nextProgressStep)
+                    {
+                        let progress = Float(i) / Float(n)
+                        progressEvent.raise(data: progress)
+                        nextProgressStep += minProgressStep
+                    }
                 }
                 
                 NSLog("Point cloud data loaded: %d points",n)
