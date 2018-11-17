@@ -217,8 +217,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell number: \(indexPath.row)!")
-        
         let path = pointCloudFiles[indexPath.row]
         self.selectPointCloudTableView.removeFromSuperview()
         

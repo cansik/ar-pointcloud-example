@@ -42,31 +42,31 @@ import SceneKit
                 }
             }
             
-            pointCloud = Array(repeating: PointCloudVertex(x: 0,y: 0,z: 0,r: 0,g: 0,b: 0), count: n)
-            
             var nextProgressStep = 0
             let minProgressStep = Int(Float(n) * 0.01)
+            let i = Counter()
             
-            // Read data
-            DispatchQueue.concurrentPerform(iterations: n - 1) { (i) in
-                let line = lines[i]
-                let elements = line.components(separatedBy: " ")
-                
-                pointCloud[i].x = Float(elements[0])!
-                pointCloud[i].y = Float(elements[1])!
-                pointCloud[i].z = Float(elements[2])!
-                
-                pointCloud[i].r = Float(elements[3])! / 255.0
-                pointCloud[i].g = Float(elements[4])! / 255.0
-                pointCloud[i].b = Float(elements[5])! / 255.0
-                
-                if(i >= nextProgressStep)
-                {
-                    let progress = Float(i) / Float(n)
-                    progressEvent.raise(data: progress)
-                    nextProgressStep += minProgressStep
-                }
-            }
+            pointCloud = lines.filter {$0 != ""}
+                .concurrentMap({ (line : String) -> PointCloudVertex in
+                    let elements = line.components(separatedBy: " ")
+                    
+                    // show progress
+                    i.increment()
+                    if(i.value >= nextProgressStep)
+                    {
+                        let progress = Float(i.value) / Float(self.n)
+                        self.progressEvent.raise(data: progress)
+                        nextProgressStep += minProgressStep
+                    }
+                    
+                    return PointCloudVertex(
+                        x: Float(elements[0])!,
+                        y: Float(elements[1])!,
+                        z: Float(elements[2])!,
+                        r: Float(elements[3])! / 255.0,
+                        g: Float(elements[4])! / 255.0,
+                        b: Float(elements[5])! / 255.0)
+                })
             
             print("Point cloud data loaded: \(n) points")
             progressEvent.raise(data: 1.0)
