@@ -54,11 +54,21 @@ void convertCloud()
   convertedCloud = createShape();
   convertedCloud.beginShape(POINTS);
 
+  PVector max = new PVector(0, 0, 0);
+
+  // calc for normalisation
+  for (int i = 0; i < cloud.getVertexCount(); i++) {
+    PVector v = cloud.getVertex(i);
+
+    // update max
+    max.x = max(max.x, abs(v.x));
+    max.y = max(max.y, abs(v.y));
+    max.z = max(max.z, abs(v.z));
+  }
+
   for (int i = 0; i < cloud.getVertexCount(); i++) {
     PVector v = cloud.getVertex(i);
     color c = cloud.getFill(i);
-
-    // normalize
 
     // rotate
 
@@ -68,7 +78,9 @@ void convertCloud()
 
     convertedCloud.fill(c);
     convertedCloud.stroke(c);
-    convertedCloud.vertex(v.x, v.y, v.z);
+
+    // normalize
+    convertedCloud.vertex(v.x / max.x, v.y / max.y, v.z / max.z);
   }
 
   convertedCloud.endShape();
