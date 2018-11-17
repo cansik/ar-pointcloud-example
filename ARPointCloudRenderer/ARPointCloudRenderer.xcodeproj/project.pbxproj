@@ -16,6 +16,7 @@
 		AB0DBAC3219AEC42000A9E13 /* PointCloudVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */; };
 		AB0DBAC5219AEC42000A9E13 /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */; };
 		AB24053C219F135F00B97ACC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24053B219F135F00B97ACC /* Event.swift */; };
+		AB240546219F903F00B97ACC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB240545219F903F00B97ACC /* Utils.swift */; };
 		AB9F6635219AEF23005E0E3E /* forest-3-us-t.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply */; };
 		AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */; };
 		AB9F663A219B60EF005E0E3E /* crossroad-filtered.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply */; };
@@ -33,6 +34,7 @@
 		AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudVertex.swift; sourceTree = "<group>"; };
 		AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 		AB24053B219F135F00B97ACC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		AB240545219F903F00B97ACC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-us-t.ply"; sourceTree = "<group>"; };
 		AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-highres_filtered.ply"; sourceTree = "<group>"; };
 		AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "crossroad-filtered.ply"; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		AB0DBAAB219AEBBF000A9E13 /* ARPointCloudRenderer */ = {
 			isa = PBXGroup;
 			children = (
+				AB240545219F903F00B97ACC /* Utils.swift */,
 				AB9F6632219AEEB3005E0E3E /* Resources */,
 				AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */,
 				AB0DBAC0219AEC42000A9E13 /* PointCloudVertex.swift */,
@@ -173,6 +176,7 @@
 				AB0DBAC3219AEC42000A9E13 /* PointCloudVertex.swift in Sources */,
 				AB0DBAAD219AEBBF000A9E13 /* AppDelegate.swift in Sources */,
 				AB24053C219F135F00B97ACC /* Event.swift in Sources */,
+				AB240546219F903F00B97ACC /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

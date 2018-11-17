@@ -85,7 +85,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
                     self.loadInfoProgressbar.setProgress(Float(progress), animated: true)
                 }
             }
-            self.pc.load(file: fileName)
+            
+            measure (name: "Load", {
+                self.pc.load(file: fileName)
+            })
             
             DispatchQueue.main.async {
                 self.loadInfoView.isHidden = true

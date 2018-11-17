@@ -22,22 +22,17 @@ import SceneKit
     public func load(file : String)
     {
         self.n = 0
-        var x, y, z : Double
-        (x,y,z) = (0,0,0)
-        
-        var r, g, b : Int
-        (r, g, b) = (0, 0, 0)
         
         progressEvent.raise(data: 0.0)
         
         // Open file
         do {
             let data = try String(contentsOfFile: file, encoding: .ascii)
-            var myStrings = data.components(separatedBy: "\n")
+            var lines = data.components(separatedBy: "\n")
             
             // Read header
-            while !myStrings.isEmpty {
-                let line = myStrings.removeFirst()
+            while !lines.isEmpty {
+                let line = lines.removeFirst()
                 if line.hasPrefix("element vertex ") {
                     n = Int(line.components(separatedBy: " ")[2])!
                     continue
@@ -53,25 +48,18 @@ import SceneKit
             let minProgressStep = Int(Float(n) * 0.01)
             
             // Read data
-            for i in 0...(self.n-1) {
-                let line = myStrings[i]
+            DispatchQueue.concurrentPerform(iterations: n - 1) { (i) in
+                let line = lines[i]
                 let elements = line.components(separatedBy: " ")
-                x = Double(elements[0])!
-                y = Double(elements[1])!
-                z = Double(elements[2])!
+                var vertex = pointCloud[i]
                 
-                r = Int(elements[3])!
-                g = Int(elements[4])!
-                b = Int(elements[5])!
+                vertex.x = Float(elements[0])!
+                vertex.y = Float(elements[1])!
+                vertex.z = Float(elements[2])!
                 
-                pointCloud[i].x = Float(x)
-                pointCloud[i].y = Float(y)
-                pointCloud[i].z = Float(z)
-                
-                pointCloud[i].r = Float(r) / 255.0
-                pointCloud[i].g = Float(g) / 255.0
-                pointCloud[i].b = Float(b) / 255.0
-                
+                vertex.r = Float(elements[3])! / 255.0
+                vertex.g = Float(elements[4])! / 255.0
+                vertex.b = Float(elements[5])! / 255.0
                 
                 if(i >= nextProgressStep)
                 {
@@ -81,7 +69,7 @@ import SceneKit
                 }
             }
             
-            NSLog("Point cloud data loaded: %d points",n)
+            print("Point cloud data loaded: \(n) points")
             progressEvent.raise(data: 1.0)
         } catch {
             print(error)
