@@ -51,15 +51,14 @@ import SceneKit
             DispatchQueue.concurrentPerform(iterations: n - 1) { (i) in
                 let line = lines[i]
                 let elements = line.components(separatedBy: " ")
-                var vertex = pointCloud[i]
                 
-                vertex.x = Float(elements[0])!
-                vertex.y = Float(elements[1])!
-                vertex.z = Float(elements[2])!
+                pointCloud[i].x = Float(elements[0])!
+                pointCloud[i].y = Float(elements[1])!
+                pointCloud[i].z = Float(elements[2])!
                 
-                vertex.r = Float(elements[3])! / 255.0
-                vertex.g = Float(elements[4])! / 255.0
-                vertex.b = Float(elements[5])! / 255.0
+                pointCloud[i].r = Float(elements[3])! / 255.0
+                pointCloud[i].g = Float(elements[4])! / 255.0
+                pointCloud[i].b = Float(elements[5])! / 255.0
                 
                 if(i >= nextProgressStep)
                 {
