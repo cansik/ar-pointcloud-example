@@ -198,7 +198,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         
         currentPointCloud.removeFromParentNode()
         currentPointCloud = pc.getNode(useColor: true)
-        currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
+        //currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
         node.addChildNode(currentPointCloud)
     }
     
