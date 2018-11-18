@@ -69,19 +69,19 @@
                     <viewLayoutGuide key="safeArea" id="BIl-wd-dHb"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="13g-ja-Q2R">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="364"/>
+                    <rect key="frame" x="0.0" y="0.0" width="388" height="516"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <prototypes>
                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" textLabel="zrG-fe-dta" style="IBUITableViewCellStyleDefault" id="7bT-tl-kUB">
-                            <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                            <rect key="frame" x="0.0" y="28" width="388" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7bT-tl-kUB" id="1Tm-3s-zdj">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="43.666666666666664"/>
+                                <rect key="frame" x="0.0" y="0.0" width="388" height="43.666666666666664"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zrG-fe-dta">
-                                        <rect key="frame" x="16" y="0.0" width="208" height="43.666666666666664"/>
+                                        <rect key="frame" x="20" y="0.0" width="348" height="43.666666666666664"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>

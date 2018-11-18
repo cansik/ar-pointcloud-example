@@ -146,6 +146,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         super.viewWillAppear(animated)
         
         runARScene()
+        sceneView.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
