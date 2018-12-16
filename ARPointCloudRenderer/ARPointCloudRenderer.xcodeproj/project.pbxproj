@@ -25,6 +25,7 @@
 		AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */; };
 		AB9F663A219B60EF005E0E3E /* crossroad-filtered.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply */; };
 		ABF478B721ACA25900092318 /* home.ply in Resources */ = {isa = PBXBuildFile; fileRef = ABF478B621ACA25900092318 /* home.ply */; };
+		ABF5BD4D21B6CEE100FF83A4 /* forest-blk360_centered.ply in Resources */ = {isa = PBXBuildFile; fileRef = ABF5BD4C21B6CEE100FF83A4 /* forest-blk360_centered.ply */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-highres_filtered.ply"; sourceTree = "<group>"; };
 		AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "crossroad-filtered.ply"; sourceTree = "<group>"; };
 		ABF478B621ACA25900092318 /* home.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = home.ply; sourceTree = "<group>"; };
+		ABF5BD4C21B6CEE100FF83A4 /* forest-blk360_centered.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-blk360_centered.ply"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				ABF478B621ACA25900092318 /* home.ply */,
 				AB08D54521A83FA200F4D609 /* house-no-filter.ply */,
 				AB24054721A099A100B97ACC /* forest-blk360.ply */,
+				ABF5BD4C21B6CEE100FF83A4 /* forest-blk360_centered.ply */,
 				AB24054821A099A100B97ACC /* vegetation-mid-filtered-asc.ply */,
 				AB9F6639219B60EF005E0E3E /* crossroad-filtered.ply */,
 				AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */,
@@ -175,6 +178,7 @@
 				AB24054A21A099A100B97ACC /* vegetation-mid-filtered-asc.ply in Resources */,
 				AB9F6635219AEF23005E0E3E /* forest-3-us-t.ply in Resources */,
 				AB08D54621A83FA200F4D609 /* house-no-filter.ply in Resources */,
+				ABF5BD4D21B6CEE100FF83A4 /* forest-blk360_centered.ply in Resources */,
 				AB0DBAB6219AEBC2000A9E13 /* Assets.xcassets in Resources */,
 				AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply in Resources */,
 				AB24054921A099A100B97ACC /* forest-blk360.ply in Resources */,

@@ -42,7 +42,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         sceneView.delegate = self
         
         // show feature points
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        //sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
