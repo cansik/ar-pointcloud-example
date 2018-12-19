@@ -27,6 +27,9 @@ void setup()
   size(1280, 720, P3D);
   pixelDensity = 2;
 
+  // clipping
+  perspective(PI/3.0, (float)width/height, 1, 100000);
+
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
 
@@ -192,7 +195,7 @@ void convertToCenterLineMeshCloud()
   for (int i = 0; i < cloud.getVertexCount(); i++)
     vecs.add(cloud.getVertex(i));
   Collections.sort(vecs, VectorComperator);
-  
+
   PVector zero = new PVector(0, 0, 0);
   float startColorFade = 0.9;
 
@@ -201,7 +204,7 @@ void convertToCenterLineMeshCloud()
 
   for (int i = 0; i < vecs.size(); i++) {
     PVector v = vecs.get(i);
-    
+
     PVector startColor = PVector.lerp(zero, v, startColorFade);
 
     PShape shape = createShape();
@@ -304,8 +307,9 @@ public void loadPointCloud(String fileName)
     int gv = g[i] & 0xFF;
     int bv = b[i] & 0xFF;
 
+    cloud.strokeWeight(5);
     cloud.stroke(rv, gv, bv);
-    cloud.vertex(x[i], y[i], z[i]);
+    cloud.vertex(x[i], -y[i], z[i]);
   }
 
   cloud.endShape();
