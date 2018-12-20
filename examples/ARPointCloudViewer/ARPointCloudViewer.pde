@@ -22,13 +22,15 @@ PShape meshCloud;
 
 PeasyCam cam;
 
+float pointSize = 3.0f;
+
 void setup()
 {
   size(1280, 720, P3D);
   pixelDensity = 2;
 
   // clipping
-  perspective(PI/3.0, (float)width/height, 1, 100000);
+  perspective(PI/3.0, (float)width/height, 0.1, 100000);
 
   cam = new PeasyCam(this, 400);
   cam.setSuppressRollRotationMode();
@@ -41,6 +43,8 @@ void setup()
 void draw()
 {
   background(0);
+  
+  cam.rotateY(0.01);
 
   if (cloudLoaded)
   {
@@ -307,7 +311,7 @@ public void loadPointCloud(String fileName)
     int gv = g[i] & 0xFF;
     int bv = b[i] & 0xFF;
 
-    cloud.strokeWeight(5);
+    cloud.strokeWeight(pointSize);
     cloud.stroke(rv, gv, bv);
     cloud.vertex(x[i], -y[i], z[i]);
   }
