@@ -24,6 +24,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     
     @IBOutlet var selectPointCloudTableView: UITableView!
     
+    @IBOutlet var pointSizeSlider: UISlider!
+    
     // local vars
     let pc = PointCloud()
     var currentPointCloud = SCNNode()
@@ -56,6 +58,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         let screenEdgeRec = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleScreenEdge(recognizer:)))
         screenEdgeRec.edges = UIRectEdge.left
         sceneView.addGestureRecognizer(screenEdgeRec)
+        
+        // add events
+        pointSizeSlider.addTarget(self, action: #selector(valueChangedOfSlider(slider:)), for: .valueChanged)
     }
     
     func showPointCloudSelectionView()
@@ -218,6 +223,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         currentPointCloud.geometry!.elements.forEach { (e : SCNGeometryElement) in
             e.maximumPointScreenSpaceRadius = 20.0
             e.pointSize = 20.0
+        }
+    }
+
+    @objc func valueChangedOfSlider(slider: UISlider)
+    {
+        print(slider.value)
+        
+        // change pointcloud size
+        currentPointCloud.geometry!.elements.forEach { (e : SCNGeometryElement) in
+            e.maximumPointScreenSpaceRadius = CGFloat(slider.value)
+            e.pointSize = CGFloat(slider.value)
         }
     }
     
