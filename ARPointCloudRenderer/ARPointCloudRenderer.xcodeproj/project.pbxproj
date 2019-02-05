@@ -21,6 +21,7 @@
 		AB24054921A099A100B97ACC /* forest-blk360.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB24054721A099A100B97ACC /* forest-blk360.ply */; };
 		AB24054A21A099A100B97ACC /* vegetation-mid-filtered-asc.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB24054821A099A100B97ACC /* vegetation-mid-filtered-asc.ply */; };
 		AB423EFE21CAD673003DAADB /* person_mres_uniformed_stand_asccii_s.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB423EFD21CAD672003DAADB /* person_mres_uniformed_stand_asccii_s.ply */; };
+		AB86307E220974F00092635D /* Walduetli_sc_13m.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB86307D220974F00092635D /* Walduetli_sc_13m.ply */; };
 		AB9342C121AD594E00B2FE86 /* large-home.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9342C021AD594D00B2FE86 /* large-home.ply */; };
 		AB9F6635219AEF23005E0E3E /* forest-3-us-t.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply */; };
 		AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply in Resources */ = {isa = PBXBuildFile; fileRef = AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */; };
@@ -46,6 +47,7 @@
 		AB24054721A099A100B97ACC /* forest-blk360.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-blk360.ply"; sourceTree = "<group>"; };
 		AB24054821A099A100B97ACC /* vegetation-mid-filtered-asc.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "vegetation-mid-filtered-asc.ply"; sourceTree = "<group>"; };
 		AB423EFD21CAD672003DAADB /* person_mres_uniformed_stand_asccii_s.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = person_mres_uniformed_stand_asccii_s.ply; sourceTree = "<group>"; };
+		AB86307D220974F00092635D /* Walduetli_sc_13m.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Walduetli_sc_13m.ply; sourceTree = "<group>"; };
 		AB9342C021AD594D00B2FE86 /* large-home.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "large-home.ply"; sourceTree = "<group>"; };
 		AB9F6633219AEF23005E0E3E /* forest-3-us-t.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-us-t.ply"; sourceTree = "<group>"; };
 		AB9F6637219B5D10005E0E3E /* forest-3-highres_filtered.ply */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forest-3-highres_filtered.ply"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		AB9F6632219AEEB3005E0E3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB86307D220974F00092635D /* Walduetli_sc_13m.ply */,
 				AB423EFD21CAD672003DAADB /* person_mres_uniformed_stand_asccii_s.ply */,
 				AB9342C021AD594D00B2FE86 /* large-home.ply */,
 				ABF478B621ACA25900092318 /* home.ply */,
@@ -185,6 +188,7 @@
 				ABF5BD4D21B6CEE100FF83A4 /* forest-blk360_centered.ply in Resources */,
 				AB0DBAB6219AEBC2000A9E13 /* Assets.xcassets in Resources */,
 				AB9F6638219B5D10005E0E3E /* forest-3-highres_filtered.ply in Resources */,
+				AB86307E220974F00092635D /* Walduetli_sc_13m.ply in Resources */,
 				AB24054921A099A100B97ACC /* forest-blk360.ply in Resources */,
 				ABF478B721ACA25900092318 /* home.ply in Resources */,
 				AB9342C121AD594E00B2FE86 /* large-home.ply in Resources */,

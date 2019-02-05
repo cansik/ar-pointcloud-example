@@ -35,6 +35,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         // show pointcloud selection
         showPointCloudSelectionView()
         
@@ -151,6 +153,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        UIApplication.shared.isIdleTimerDisabled = true
         
         // Pause the view's session
         sceneView.session.pause()
