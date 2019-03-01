@@ -45,7 +45,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         sceneView.delegate = self
         
         // show feature points
-        //sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         // show statistics such as fps and timing information
         sceneView.showsStatistics = true
@@ -201,8 +201,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         }
         
         currentPointCloud.removeFromParentNode()
-        //currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
         node.addChildNode(currentPointCloud)
+        
+        currentPointCloud.geometry!.elements.forEach { (e : SCNGeometryElement) in
+            e.maximumPointScreenSpaceRadius = 5.0
+            e.pointSize = 5.0
+        }
+        
+        sceneView.debugOptions = []
     }
     
     @objc func handleScreenEdge(recognizer: UIScreenEdgePanGestureRecognizer) {
@@ -212,11 +218,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     
     @IBAction func settingsButtonPressed()
     {
-        // change pointcloud size
-        currentPointCloud.geometry!.elements.forEach { (e : SCNGeometryElement) in
-            e.maximumPointScreenSpaceRadius = 20.0
-            e.pointSize = 20.0
-        }
+       // show chooser
+        showPointCloudSelectionView()
     }
 
     @objc func valueChangedOfSlider(slider: UISlider)

@@ -17,17 +17,19 @@
 		AB0DBAC5219AEC42000A9E13 /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */; };
 		AB24053C219F135F00B97ACC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24053B219F135F00B97ACC /* Event.swift */; };
 		AB240546219F903F00B97ACC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB240545219F903F00B97ACC /* Utils.swift */; };
-		AB337107222934F3005C0CD7 /* forest-blk360..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FC222934F3005C0CD7 /* forest-blk360..scn */; };
-		AB337108222934F3005C0CD7 /* forest-3-us-t..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FD222934F3005C0CD7 /* forest-3-us-t..scn */; };
-		AB337109222934F3005C0CD7 /* house-no-filter..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FE222934F3005C0CD7 /* house-no-filter..scn */; };
-		AB33710A222934F3005C0CD7 /* vegetation-mid-filtered-asc..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FF222934F3005C0CD7 /* vegetation-mid-filtered-asc..scn */; };
-		AB33710B222934F3005C0CD7 /* crossroad-filtered..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337100222934F3005C0CD7 /* crossroad-filtered..scn */; };
-		AB33710C222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337101222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s..scn */; };
-		AB33710D222934F3005C0CD7 /* large-home..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337102222934F3005C0CD7 /* large-home..scn */; };
-		AB33710E222934F3005C0CD7 /* Walduetli_sc_13m..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337103222934F3005C0CD7 /* Walduetli_sc_13m..scn */; };
-		AB33710F222934F3005C0CD7 /* home..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337104222934F3005C0CD7 /* home..scn */; };
-		AB337110222934F3005C0CD7 /* forest-3-highres_filtered..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337105222934F3005C0CD7 /* forest-3-highres_filtered..scn */; };
-		AB337111222934F3005C0CD7 /* forest-blk360_centered..scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337106222934F3005C0CD7 /* forest-blk360_centered..scn */; };
+		AB337107222934F3005C0CD7 /* forest-blk360.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FC222934F3005C0CD7 /* forest-blk360.scn */; };
+		AB337108222934F3005C0CD7 /* forest-3-us-t.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FD222934F3005C0CD7 /* forest-3-us-t.scn */; };
+		AB337109222934F3005C0CD7 /* house-no-filter.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FE222934F3005C0CD7 /* house-no-filter.scn */; };
+		AB33710A222934F3005C0CD7 /* vegetation-mid-filtered-asc.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3370FF222934F3005C0CD7 /* vegetation-mid-filtered-asc.scn */; };
+		AB33710B222934F3005C0CD7 /* crossroad-filtered.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337100222934F3005C0CD7 /* crossroad-filtered.scn */; };
+		AB33710C222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337101222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s.scn */; };
+		AB33710D222934F3005C0CD7 /* large-home.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337102222934F3005C0CD7 /* large-home.scn */; };
+		AB33710E222934F3005C0CD7 /* Walduetli_sc_13m.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337103222934F3005C0CD7 /* Walduetli_sc_13m.scn */; };
+		AB33710F222934F3005C0CD7 /* home.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337104222934F3005C0CD7 /* home.scn */; };
+		AB337110222934F3005C0CD7 /* forest-3-highres_filtered.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337105222934F3005C0CD7 /* forest-3-highres_filtered.scn */; };
+		AB337111222934F3005C0CD7 /* forest-blk360_centered.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB337106222934F3005C0CD7 /* forest-blk360_centered.scn */; };
+		AB3371132229429D005C0CD7 /* Wriggle Single-934.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3371122229429D005C0CD7 /* Wriggle Single-934.scn */; };
+		AB3371172229461C005C0CD7 /* Aurora4-3956.scn in Resources */ = {isa = PBXBuildFile; fileRef = AB3371162229461C005C0CD7 /* Aurora4-3956.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,17 +45,19 @@
 		AB0DBAC2219AEC42000A9E13 /* PointCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 		AB24053B219F135F00B97ACC /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		AB240545219F903F00B97ACC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		AB3370FC222934F3005C0CD7 /* forest-blk360..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-blk360..scn"; sourceTree = "<group>"; };
-		AB3370FD222934F3005C0CD7 /* forest-3-us-t..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-3-us-t..scn"; sourceTree = "<group>"; };
-		AB3370FE222934F3005C0CD7 /* house-no-filter..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "house-no-filter..scn"; sourceTree = "<group>"; };
-		AB3370FF222934F3005C0CD7 /* vegetation-mid-filtered-asc..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "vegetation-mid-filtered-asc..scn"; sourceTree = "<group>"; };
-		AB337100222934F3005C0CD7 /* crossroad-filtered..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "crossroad-filtered..scn"; sourceTree = "<group>"; };
-		AB337101222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = person_mres_uniformed_stand_asccii_s..scn; sourceTree = "<group>"; };
-		AB337102222934F3005C0CD7 /* large-home..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "large-home..scn"; sourceTree = "<group>"; };
-		AB337103222934F3005C0CD7 /* Walduetli_sc_13m..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Walduetli_sc_13m..scn; sourceTree = "<group>"; };
-		AB337104222934F3005C0CD7 /* home..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = home..scn; sourceTree = "<group>"; };
-		AB337105222934F3005C0CD7 /* forest-3-highres_filtered..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-3-highres_filtered..scn"; sourceTree = "<group>"; };
-		AB337106222934F3005C0CD7 /* forest-blk360_centered..scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-blk360_centered..scn"; sourceTree = "<group>"; };
+		AB3370FC222934F3005C0CD7 /* forest-blk360.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-blk360.scn"; sourceTree = "<group>"; };
+		AB3370FD222934F3005C0CD7 /* forest-3-us-t.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-3-us-t.scn"; sourceTree = "<group>"; };
+		AB3370FE222934F3005C0CD7 /* house-no-filter.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "house-no-filter.scn"; sourceTree = "<group>"; };
+		AB3370FF222934F3005C0CD7 /* vegetation-mid-filtered-asc.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "vegetation-mid-filtered-asc.scn"; sourceTree = "<group>"; };
+		AB337100222934F3005C0CD7 /* crossroad-filtered.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "crossroad-filtered.scn"; sourceTree = "<group>"; };
+		AB337101222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = person_mres_uniformed_stand_asccii_s.scn; sourceTree = "<group>"; };
+		AB337102222934F3005C0CD7 /* large-home.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "large-home.scn"; sourceTree = "<group>"; };
+		AB337103222934F3005C0CD7 /* Walduetli_sc_13m.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Walduetli_sc_13m.scn; sourceTree = "<group>"; };
+		AB337104222934F3005C0CD7 /* home.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = home.scn; sourceTree = "<group>"; };
+		AB337105222934F3005C0CD7 /* forest-3-highres_filtered.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-3-highres_filtered.scn"; sourceTree = "<group>"; };
+		AB337106222934F3005C0CD7 /* forest-blk360_centered.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "forest-blk360_centered.scn"; sourceTree = "<group>"; };
+		AB3371122229429D005C0CD7 /* Wriggle Single-934.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Wriggle Single-934.scn"; sourceTree = "<group>"; };
+		AB3371162229461C005C0CD7 /* Aurora4-3956.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Aurora4-3956.scn"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,17 +109,19 @@
 		AB9F6632219AEEB3005E0E3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AB337100222934F3005C0CD7 /* crossroad-filtered..scn */,
-				AB337105222934F3005C0CD7 /* forest-3-highres_filtered..scn */,
-				AB3370FD222934F3005C0CD7 /* forest-3-us-t..scn */,
-				AB337106222934F3005C0CD7 /* forest-blk360_centered..scn */,
-				AB3370FC222934F3005C0CD7 /* forest-blk360..scn */,
-				AB337104222934F3005C0CD7 /* home..scn */,
-				AB3370FE222934F3005C0CD7 /* house-no-filter..scn */,
-				AB337102222934F3005C0CD7 /* large-home..scn */,
-				AB337101222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s..scn */,
-				AB3370FF222934F3005C0CD7 /* vegetation-mid-filtered-asc..scn */,
-				AB337103222934F3005C0CD7 /* Walduetli_sc_13m..scn */,
+				AB3371162229461C005C0CD7 /* Aurora4-3956.scn */,
+				AB3371122229429D005C0CD7 /* Wriggle Single-934.scn */,
+				AB337100222934F3005C0CD7 /* crossroad-filtered.scn */,
+				AB337105222934F3005C0CD7 /* forest-3-highres_filtered.scn */,
+				AB3370FD222934F3005C0CD7 /* forest-3-us-t.scn */,
+				AB337106222934F3005C0CD7 /* forest-blk360_centered.scn */,
+				AB3370FC222934F3005C0CD7 /* forest-blk360.scn */,
+				AB337104222934F3005C0CD7 /* home.scn */,
+				AB3370FE222934F3005C0CD7 /* house-no-filter.scn */,
+				AB337102222934F3005C0CD7 /* large-home.scn */,
+				AB337101222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s.scn */,
+				AB3370FF222934F3005C0CD7 /* vegetation-mid-filtered-asc.scn */,
+				AB337103222934F3005C0CD7 /* Walduetli_sc_13m.scn */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -180,18 +186,20 @@
 			files = (
 				AB0DBAAF219AEBC0000A9E13 /* art.scnassets in Resources */,
 				AB0DBAB9219AEBC2000A9E13 /* LaunchScreen.storyboard in Resources */,
-				AB337107222934F3005C0CD7 /* forest-blk360..scn in Resources */,
-				AB33710E222934F3005C0CD7 /* Walduetli_sc_13m..scn in Resources */,
-				AB33710A222934F3005C0CD7 /* vegetation-mid-filtered-asc..scn in Resources */,
-				AB337111222934F3005C0CD7 /* forest-blk360_centered..scn in Resources */,
-				AB33710C222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s..scn in Resources */,
-				AB33710D222934F3005C0CD7 /* large-home..scn in Resources */,
-				AB33710F222934F3005C0CD7 /* home..scn in Resources */,
-				AB33710B222934F3005C0CD7 /* crossroad-filtered..scn in Resources */,
-				AB337108222934F3005C0CD7 /* forest-3-us-t..scn in Resources */,
+				AB337107222934F3005C0CD7 /* forest-blk360.scn in Resources */,
+				AB33710E222934F3005C0CD7 /* Walduetli_sc_13m.scn in Resources */,
+				AB33710A222934F3005C0CD7 /* vegetation-mid-filtered-asc.scn in Resources */,
+				AB337111222934F3005C0CD7 /* forest-blk360_centered.scn in Resources */,
+				AB33710C222934F3005C0CD7 /* person_mres_uniformed_stand_asccii_s.scn in Resources */,
+				AB33710D222934F3005C0CD7 /* large-home.scn in Resources */,
+				AB3371132229429D005C0CD7 /* Wriggle Single-934.scn in Resources */,
+				AB33710F222934F3005C0CD7 /* home.scn in Resources */,
+				AB33710B222934F3005C0CD7 /* crossroad-filtered.scn in Resources */,
+				AB337108222934F3005C0CD7 /* forest-3-us-t.scn in Resources */,
 				AB0DBAB6219AEBC2000A9E13 /* Assets.xcassets in Resources */,
-				AB337110222934F3005C0CD7 /* forest-3-highres_filtered..scn in Resources */,
-				AB337109222934F3005C0CD7 /* house-no-filter..scn in Resources */,
+				AB3371172229461C005C0CD7 /* Aurora4-3956.scn in Resources */,
+				AB337110222934F3005C0CD7 /* forest-3-highres_filtered.scn in Resources */,
+				AB337109222934F3005C0CD7 /* house-no-filter.scn in Resources */,
 				AB0DBAB4219AEBC0000A9E13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
