@@ -27,7 +27,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     @IBOutlet var pointSizeSlider: UISlider!
     
     // local vars
-    let pc = PointCloud()
     var currentPointCloud = SCNNode()
     
     var lastNode : SCNNode?
@@ -65,7 +64,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
     
     func showPointCloudSelectionView()
     {
-        let pcs = Bundle.main.paths(forResourcesOfType: "ply", inDirectory: "")
+        let pcs = Bundle.main.paths(forResourcesOfType: "scn", inDirectory: "")
         pointCloudFiles = pcs
         
         self.view.addSubview(self.selectPointCloudTableView)
@@ -87,14 +86,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
                 self.loadInfoLabel.text = "loading \((fileName as NSString).lastPathComponent)..."
             }
             
-            self.pc.progressEvent.addHandler { progress in
-                DispatchQueue.main.async {
-                    self.loadInfoProgressbar.setProgress(Float(progress), animated: true)
-                }
-            }
-            
             measure (name: "Load", {
-                self.pc.load(file: fileName)
+                let scene = try? SCNScene(url: URL(fileURLWithPath: fileName))
+                self.currentPointCloud = scene!.rootNode.childNode(withName: "cloud", recursively: true)!
             })
             
             DispatchQueue.main.async {
@@ -207,7 +201,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITableViewDataSource
         }
         
         currentPointCloud.removeFromParentNode()
-        currentPointCloud = pc.getNode(useColor: true)
         //currentPointCloud.scale = SCNVector3(2.0, 2.0, 2.0)
         node.addChildNode(currentPointCloud)
     }
